@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock time;
+
+hybrid clock R;
+const double c = 0.01;
+const double c_value = 0.9;
+
+const double attn_cost = 0.4;
+const double no_attn_cost = 0.2;
+
+const double prob_not_critical = 0.1;
+const int weight_not_critical = 1;
+const double prob_critical = 0.9;
+const int weight_critical = 9;
+
+const double no_expl_wl = 0;
+const double cost_expl = 0.3;
+const double after_cost_expl = 0.1;
+
+const double MAX_Time = 10;
+
+double prob_attn = 0;
+int weight_attn = 0;
+double prob_no_attn = 1;
+int weight_no_attn = 1;
+
+void update_attn_prob(){
+    prob_attn =(time / MAX_Time) * c_value + c;
+    weight_attn = fint(prob_attn  * 100) ;
+    prob_no_attn = 1 - prob_attn;
+    weight_no_attn = fint(prob_no_attn  * 100);
+}</declaration>
+	<template>
+		<name x="5" y="5">Game</name>
+		<declaration>// Place local declarations here.
+clock t;</declaration>
+		<location id="id0" x="-629" y="119">
+			<name x="-765" y="102">No_Explanation</name>
+			<label kind="invariant" x="-756" y="118">t &lt;= 1 &amp;&amp;
+time &lt;= MAX_Time &amp;&amp; 
+R' == 0</label>
+		</location>
+		<location id="id1" x="51" y="161">
+			<name x="1" y="178">no_expl_needed</name>
+			<label kind="invariant" x="35" y="195">R' == 0</label>
+		</location>
+		<location id="id2" x="44" y="-110">
+			<name x="34" y="-93">expl_given</name>
+			<label kind="invariant" x="34" y="-76">R' == 0</label>
+		</location>
+		<location id="id3" x="-195" y="-110">
+			<name x="-153" y="-102">decision_state_1</name>
+			<label kind="invariant" x="-153" y="-85">t &lt;= 0 &amp;&amp;
+R' == 0</label>
+		</location>
+		<location id="id4" x="-391" y="-119">
+			<name x="-400" y="-187">decision_state_2</name>
+			<label kind="invariant" x="-391" y="-170">t &lt;= 0 &amp;&amp;
+R' == 0</label>
+		</location>
+		<branchpoint id="id5" x="-467" y="-102"/>
+		<branchpoint id="id6" x="-263" y="127"/>
+		<init ref="id0"/>
+		<transition id="id7">
+			<source ref="id5"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-680" y="-85">R=no_attn_cost</label>
+			<label kind="probability" x="-697" y="-68">weight_no_attn</label>
+			<nail x="-620" y="-25"/>
+		</transition>
+		<transition id="id8">
+			<source ref="id5"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-408" y="-8">R = attn_cost</label>
+			<label kind="probability" x="-408" y="-25">weight_attn</label>
+			<nail x="-416" y="-17"/>
+		</transition>
+		<transition id="id9" controllable="false">
+			<source ref="id4"/>
+			<target ref="id5"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-357" y="-110">time &lt;= MAX_Time</label>
+		</transition>
+		<transition id="id11">
+			<source ref="id6"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-221" y="42">t = 0</label>
+			<label kind="probability" x="-229" y="25">weight_critical</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-110" y="-161">R = cost_expl,
+t = 0</label>
+		</transition>
+		<transition id="id13">
+			<source ref="id6"/>
+			<target ref="id1"/>
+			<label kind="assignment" x="-204" y="170">R = no_expl_wl,
+t = 0</label>
+			<label kind="probability" x="-204" y="153">weight_not_critical</label>
+		</transition>
+		<transition id="id14" controllable="false">
+			<source ref="id0"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-510" y="127">t &gt;= 1</label>
+			<label kind="assignment" x="-518" y="144">update_attn_prob()</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+
+// List one or more processes to be composed into a system.
+system Game;
+</system>
+	<queries>
+		<query>
+			<formula>simulate [&lt;=10] {
+    Game.No_Explanation + 2*Game.decision_state_1 + 4*Game.decision_state_2 +  6*Game.expl_given +  8*Game.no_expl_needed
+}</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2025-06-10 15:31:12 +0200">
+				<plot title="Simulations (1)" xaxis="time" yaxis="value">
+					<series title="Game.No_Explanation + 2 * Game.decision_state_1 + 4 * Game.decision_state_2 + 6 * Game.expl_given + 8 * Game.no_expl_needed" type="l" color="0xff0000" encoding="csv">0.0,1.0
+1.0,1.0
+1.0,4.0
+1.0,1.0
+2.0,1.0
+2.0,4.0
+2.0,1.0
+3.0,1.0
+3.0,4.0
+3.0,1.0
+4.0,1.0
+4.0,6.0
+10.0,6.0
+					</series>
+					<comment/>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula>simulate [&lt;=10; 100] {
+  10+Game.no_expl_needed, 6+Game.expl_given, 2+Game.No_Explanation
+}</formula>
+			<comment/>
+		</query>
+	</queries>
+</nta>
