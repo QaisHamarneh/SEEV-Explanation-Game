@@ -56,7 +56,8 @@ R' == 0</label>
 		</location>
 		<location id="id4" x="-544" y="-306">
 			<name x="-561" y="-348">no_expl</name>
-			<label kind="invariant" x="-629" y="-314">R' == 0</label>
+			<label kind="invariant" x="-697" y="-323">R' == 0 &amp;&amp;
+time &lt;= MAX_TIME</label>
 		</location>
 		<location id="id5" x="-544" y="-212">
 			<name x="-603" y="-178">decision_state</name>
@@ -80,7 +81,7 @@ after_cost_expl</label>
 		<transition id="id10">
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="assignment" x="-705" y="-280">update_attn_prob(),
+			<label kind="assignment" x="-705" y="-263">update_attn_prob(),
 t = 0</label>
 		</transition>
 		<transition id="id11">
@@ -128,15 +129,12 @@ system Game;
     Game.initial_state + 2*Game.no_expl + 4*Game.no_expl_needed + 6*Game.decision_state +  8*Game.attn_state +  10*Game.expl_given 
 }</formula>
 			<comment/>
-			<result outcome="success" type="quality" timestamp="2025-06-13 11:27:54 +0200">
+			<result outcome="success" type="quality" timestamp="2025-06-13 11:44:30 +0200">
 				<plot title="Simulations (1)" xaxis="time" yaxis="value">
 					<series title="Game.initial_state + 2 * Game.no_expl + 4 * Game.no_expl_needed + 6 * Game.decision_state + 8 * Game.attn_state + 10 * Game.expl_given" type="l" color="0xff0000" encoding="csv">0.0,1.0
 0.0,2.0
-1.0,2.0
-1.0,8.0
-1.0,2.0
-2.0,2.0
-2.0,10.0
+1.4198588207364085,2.0
+1.4198588207364085,10.0
 10.0,10.0
 					</series>
 					<comment/>
@@ -16496,7 +16494,7 @@ system Game;
 		<query>
 			<formula>strategy GoFast = minE (R) [&lt;=10] : &lt;&gt; (Game.no_expl_needed || Game.expl_given)</formula>
 			<comment/>
-			<result outcome="success" type="quality" timestamp="2025-06-13 11:38:39 +0200">
+			<result outcome="success" type="quality" timestamp="2025-06-13 11:44:33 +0200">
 			</result>
 		</query>
 		<query>
@@ -16504,7 +16502,7 @@ system Game;
   10+Game.no_expl_needed, 6+Game.expl_given, 2+Game.no_expl
 } under GoFast</formula>
 			<comment/>
-			<result outcome="success" type="quality" timestamp="2025-06-13 11:38:43 +0200">
+			<result outcome="success" type="quality" timestamp="2025-06-13 11:44:39 +0200">
 				<plot title="Simulations (100)" xaxis="time" yaxis="value">
 					<series title="10 + Game.no_expl_needed" type="l" color="0xff0000" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16513,14 +16511,14 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff0202" encoding="csv">0.0,10.0
-0.0,11.0
-10.0,11.0
+10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff0303" encoding="csv">0.0,10.0
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff0404" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff0404" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16541,7 +16539,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff0a0a" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff0b0b" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16586,8 +16585,7 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff1717" encoding="csv">0.0,10.0
-0.0,11.0
-10.0,11.0
+10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff1818" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16611,7 +16609,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff1e1e" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff1f1f" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16629,7 +16628,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff2424" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff2525" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16660,7 +16660,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16676,7 +16677,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff3131" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff3232" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16700,7 +16702,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff3838" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff3939" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16739,7 +16742,8 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff4444" encoding="csv">0.0,10.0
-10.0,10.0
+0.0,11.0
+10.0,11.0
 					</series>
 					<series title="" type="l" color="0xff4545" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16763,8 +16767,7 @@ system Game;
 10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff4b4b" encoding="csv">0.0,10.0
-0.0,11.0
-10.0,11.0
+10.0,10.0
 					</series>
 					<series title="" type="l" color="0xff4c4c" encoding="csv">0.0,10.0
 10.0,10.0
@@ -16820,15 +16823,15 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x02ff02" encoding="csv">0.0,6.0
-10.0,6.0
+0.0,7.0
+10.0,7.0
 					</series>
 					<series title="" type="l" color="0x03ff03" encoding="csv">0.0,6.0
 0.0,7.0
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x04ff04" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x04ff04" encoding="csv">0.0,6.0
 0.0,7.0
@@ -16855,8 +16858,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x0aff0a" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x0bff0b" encoding="csv">0.0,6.0
 0.0,7.0
@@ -16915,7 +16917,8 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x17ff17" encoding="csv">0.0,6.0
-10.0,6.0
+0.0,7.0
+10.0,7.0
 					</series>
 					<series title="" type="l" color="0x18ff18" encoding="csv">0.0,6.0
 0.0,7.0
@@ -16946,8 +16949,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x1eff1e" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x1fff1f" encoding="csv">0.0,6.0
 0.0,7.0
@@ -16970,8 +16972,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x24ff24" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x25ff25" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17009,8 +17010,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x2dff2d" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x2eff2e" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17028,8 +17028,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x31ff31" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x32ff32" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17060,8 +17059,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x38ff38" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x39ff39" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17112,8 +17110,7 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x44ff44" encoding="csv">0.0,6.0
-0.0,7.0
-10.0,7.0
+10.0,6.0
 					</series>
 					<series title="" type="l" color="0x45ff45" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17144,7 +17141,8 @@ system Game;
 10.0,7.0
 					</series>
 					<series title="" type="l" color="0x4bff4b" encoding="csv">0.0,6.0
-10.0,6.0
+0.0,7.0
+10.0,7.0
 					</series>
 					<series title="" type="l" color="0x4cff4c" encoding="csv">0.0,6.0
 0.0,7.0
@@ -17217,6 +17215,8 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0202ff" encoding="csv">0.0,2.0
+0.0,3.0
+0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0303ff" encoding="csv">0.0,2.0
@@ -17225,8 +17225,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0404ff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0404ff" encoding="csv">0.0,2.0
@@ -17260,8 +17258,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0a0aff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x0b0bff" encoding="csv">0.0,2.0
@@ -17335,6 +17331,8 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x1717ff" encoding="csv">0.0,2.0
+0.0,3.0
+0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x1818ff" encoding="csv">0.0,2.0
@@ -17373,8 +17371,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x1e1eff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x1f1fff" encoding="csv">0.0,2.0
@@ -17403,8 +17399,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x2424ff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x2525ff" encoding="csv">0.0,2.0
@@ -17451,8 +17445,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x2d2dff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x2e2eff" encoding="csv">0.0,2.0
@@ -17474,8 +17466,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x3131ff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x3232ff" encoding="csv">0.0,2.0
@@ -17514,8 +17504,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x3838ff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x3939ff" encoding="csv">0.0,2.0
@@ -17579,8 +17567,6 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x4444ff" encoding="csv">0.0,2.0
-0.0,3.0
-0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x4545ff" encoding="csv">0.0,2.0
@@ -17619,6 +17605,8 @@ system Game;
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x4b4bff" encoding="csv">0.0,2.0
+0.0,3.0
+0.0,2.0
 10.0,2.0
 					</series>
 					<series title="" type="l" color="0x4c4cff" encoding="csv">0.0,2.0
